@@ -93,16 +93,14 @@ Player.prototype.render = function() {
 // Check for collisions by checking if enemy and player are on same coordinates
 Player.prototype.checkCollisions = function() {
     allEnemies.forEach(enemy => {
-        let playerOnFirstRow = player.y - 14 === enemy.y;
-        let playerOnSecondRow = player.y - 16 === enemy.y;
-        let playerOnThirdRow = player.y - 20 === enemy.y;
-        let enemyOnPlayer = enemy.x >= player.x - 40 && enemy.x <= player.x + 40;
+            let playerOnFirstRow = player.y - 14 === enemy.y;
+            let playerOnSecondRow = player.y - 16 === enemy.y;
+            let playerOnThirdRow = player.y - 20 === enemy.y;
+            let enemyOnPlayer = enemy.x >= player.x - 40 && enemy.x <= player.x + 40;
 
-        let collision = (playerOnFirstRow || playerOnSecondRow || playerOnThirdRow) && enemyOnPlayer;
+            let collision = playerOnFirstRow || playerOnSecondRow || playerOnThirdRow) && enemyOnPlayer;
 
-        collision && this.getInitialPosition();
-        collision && game.score >= 50 && (game.score -= 50);
-        collision && (game.collisions += 1);
+        collision && this.getInitialPosition(); collision && game.score >= 50 && (game.score -= 50); collision && (game.collisions += 1);
 
         if (game.collisions === 3) {
             allLives.splice(0, 1);
@@ -133,10 +131,10 @@ Player.prototype.handleInput = function(allowedKeys) {
 // Listen for key-presses through the handleInput() method
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
-        37: 'left',
-        65: 'left',
-        38: 'up',
-        87: 'up',
+        37: 'left'
+        65: 'left'
+        38: 'up'
+        87: 'up'
         39: 'right',
         68: 'right',
         40: 'down',
@@ -149,7 +147,7 @@ document.addEventListener('keyup', function(e) {
 // Track player score
 let Game = function() {
     this.score = 0;
-    this.higherScore = 0;
+    this.highScore = 0;
     this.collisions = 0;
     this.isOver = false;
 }
@@ -266,7 +264,7 @@ let Gem = function() {
     this.y;
     this.width = 60;
     this.height = 80;
-    this.gemImages = [
+    this.getImages = [
         'images/Gem Blue.png',
         'images/Gem Green.png',
         'images/Gem Orange.png',
@@ -288,7 +286,7 @@ Gem.prototype.getRandomGem = function() {
         possibleX = [20, 120, 220, 320, 420],
         possibleY = [120, 200, 280];
 
-    this.randomGem = Math.floor(Math.random() * this.gemImages.length);
+    this.randomGem = Math.floor(Math.random() * this.getImages.length);
     randomX = Math.floor(Math.random() * possibleX.length);
     randomY = Math.floor(Math.random() * possibleY.length);
 
@@ -327,7 +325,7 @@ Gem.clearTimeOuts = function() {
 
 // Draw collectables
 Gem.prototype.render = function() {
-    if (game.score >= 300) {
+    if (gem.score >= 300) {
         ctx.font = 'bold 20px sans-serif';
         ctx.fillStyle = 'grey';
         ctx.fillText(`${this.gemValues}`, this.x + 12, this.y + 90);
@@ -357,6 +355,6 @@ let player = new Player();
 let life1 = new Lives(370);
 let life2 = new Lives(410);
 let life3 = new Lives(450);
-let allLives = [life1, life2, life3];
+let allLives = [enemy1, enemy2, enemy3];
 let allGems = [];
 Gem.generateGem();
