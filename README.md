@@ -11,5 +11,13 @@
 - Avoid colliding with enemy bugs
 - You have 3 lives otherwise the game is over
 
+## References
+- https://github.com/Fa-v/arcade-game
+- https://github.com/AaronJuarez/classic-arcade-game-clone
+- https://developer.mozilla.org/kab/docs/Games/Techniques/2D_collision_detection
+- https://knowledge.udacity.com/questions/8262
+
+
 ## License
 - This repository is covered under the MIT License
+
