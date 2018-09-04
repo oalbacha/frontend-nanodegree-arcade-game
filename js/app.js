@@ -1,4 +1,5 @@
 //-------------------------ENEMIES-------------------------
+"use strict";
 //Set all enemies variables
 var Enemy = function(y) {
     this.initialPosition = -100;
@@ -9,14 +10,14 @@ var Enemy = function(y) {
     this.speed = this.calculateSpeed();
     this.sprite = 'images/enemy-bug.png';
 
-    this.getInitialPosition();
+    this.x = this.initialPosition;
+    // this.getInitialPosition();
 };
 
 //Set enemies initial coordinates
-Enemy.prototype.getInitialPosition = function() {
-    this.x = this.initialPosition;
-    this.y = this.y;
-}
+// Enemy.prototype.getInitialPosition = function() {
+//     this.y = this.y;
+// }
 
 //Calculate and return random speed
 Enemy.prototype.calculateSpeed = function(minSpeed, maxSpeed) {
@@ -104,7 +105,7 @@ Player.prototype.checkCollisions = function() {
         collision && game.score >= 50 && (game.score -= 50);
         collision && (game.collisions += 1);
 
-        if (game.collisions === 3) {
+        if (game.collisions === 1) {
             allLives.splice(0, 1);
             game.collisions = 0;
         }
@@ -122,10 +123,10 @@ Player.prototype.handleInput = function(allowedKeys) {
             this.y <= 50 ? this.y = -10 : this.y -= 80;
             break;
         case 'right':
-            this.x <= 400 ? this.x = 400 : this.x += 100;
+            this.x >= 400 ? this.x = 400 : this.x += 100;
             break;
         case 'down':
-            this.y <= 400 ? this.y = 400 : this.y += 80;
+            this.y >= 400 ? this.y = 400 : this.y += 80;
             break;
     }
 }
